@@ -11,4 +11,4 @@ INSERT INTO Students(
   profile,
   language,
   adapt_scale
-  ) SELECT uuid(outid), regname, areaname, tername, eoname, birth, sextypename, regtypename, tertypename, classprofilename, classlangname, ukradaptscale FROM zno_info;
+  ) SELECT uuid(outid), regname, areaname, tername, eoname, birth, sextypename, regtypename, tertypename, classprofilename, classlangname, ukradaptscale FROM public.zno_info;

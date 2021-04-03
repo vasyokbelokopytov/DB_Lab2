@@ -1,17 +1,3 @@
-UPDATE zno_info SET eoname = 'Невідомо' WHERE eoname IS NULL;
-UPDATE zno_info SET ukrptname = 'Невідомо' WHERE ukrptname IS NULL;
-UPDATE zno_info SET histptname = 'Невідомо' WHERE histptname IS NULL;
-UPDATE zno_info SET mathptname = 'Невідомо' WHERE mathptname IS NULL;
-UPDATE zno_info SET physptname = 'Невідомо' WHERE physptname IS NULL;
-UPDATE zno_info SET chemptname = 'Невідомо' WHERE chemptname IS NULL;
-UPDATE zno_info SET bioptname = 'Невідомо' WHERE bioptname IS NULL;
-UPDATE zno_info SET geoptname = 'Невідомо' WHERE geoptname IS NULL;
-UPDATE zno_info SET engptname = 'Невідомо' WHERE engptname IS NULL;
-UPDATE zno_info SET fraptname = 'Невідомо' WHERE fraptname IS NULL;
-UPDATE zno_info SET deuptname = 'Невідомо' WHERE deuptname IS NULL;
-UPDATE zno_info SET spaptname = 'Невідомо' WHERE spaptname IS NULL;
-
-
 INSERT INTO Institutions(
   institution_name,
   institution_region,
@@ -20,26 +6,26 @@ INSERT INTO Institutions(
   institution_type,
   institution_parent
   ) SELECT DISTINCT ON (eoname) * FROM (
-    SELECT DISTINCT eoname, eoregname, eoareaname, eotername, eotypename, eoparent FROM zno_info
+    SELECT DISTINCT COALESCE(eoname, 'Невідомо') AS eoname, eoregname, eoareaname, eotername, eotypename, eoparent FROM public.zno_info
     UNION
-      SELECT DISTINCT ukrptname, ukrptregname, ukrptareaname, ukrpttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(ukrptname, 'Невідомо') AS ukrptname, ukrptregname, ukrptareaname, ukrpttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT histptname, histptregname, histptareaname, histpttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(histptname, 'Невідомо') AS histptname, histptregname, histptareaname, histpttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT mathptname, mathptregname, mathptareaname, mathpttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(mathptname, 'Невідомо') AS mathptname, mathptregname, mathptareaname, mathpttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT physptname, physptregname, physptareaname, physpttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(physptname, 'Невідомо') AS physptname, physptregname, physptareaname, physpttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT chemptname, chemptregname, chemptareaname, chempttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(chemptname, 'Невідомо') AS chemptname, chemptregname, chemptareaname, chempttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT bioptname, bioptregname, bioptareaname, biopttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(bioptname, 'Невідомо') AS bioptname, bioptregname, bioptareaname, biopttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT geoptname, geoptregname, geoptareaname, geopttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(geoptname, 'Невідомо') AS geoptname, geoptregname, geoptareaname, geopttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT engptname, engptregname, engptareaname, engpttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(engptname, 'Невідомо') AS engptname, engptregname, engptareaname, engpttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT fraptname, fraptregname, fraptareaname, frapttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(fraptname, 'Невідомо') AS fraptname, fraptregname, fraptareaname, frapttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT deuptname, deuptregname, deuptareaname, deupttername, NULL, NULL FROM zno_info
+      SELECT DISTINCT COALESCE(deuptname, 'Невідомо') AS deuptname, deuptregname, deuptareaname, deupttername, NULL, NULL FROM public.zno_info
     UNION
-      SELECT DISTINCT spaptname, spaptregname, spaptareaname, spapttername, NULL, NULL FROM zno_info) AS UNIONED;
+      SELECT DISTINCT COALESCE(spaptname, 'Невідомо') AS spaptname, spaptregname, spaptareaname, spapttername, NULL, NULL FROM public.zno_info) AS UNIONED;
