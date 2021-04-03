@@ -2,6 +2,7 @@ version: '3.8'
 services:
   db:
     image: postgres
+    container_name: db
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -11,15 +12,16 @@ services:
       - postgres:/data/postgres
     ports:
       - '5432:5432'
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@kpi.ua
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    ports:
-      - '8081:80'
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@kpi.ua
+  #     - PGADMIN_DEFAULT_PASSWORD=admin
+  #   ports:
+  #     - '8081:80'
   flyway:
     image: flyway/flyway
+    container_name: flyway
     command: -url=jdbc:postgresql://db/ -schemas=public -user=postgres -password=postgres -connectRetries=60 migrate
     volumes:
       - ./migrations:/flyway/sql
@@ -27,4 +29,4 @@ services:
       - db
 volumes:
   postgres:
-  pgadmin:
+  # pgadmin:
