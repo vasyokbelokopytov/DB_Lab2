@@ -37,7 +37,7 @@ INSERT INTO students_subjects(
   language,
   dpa_level,
   year)
-SELECT mathtest, uuid(outid), mathptname, mathball100, mathball12, mathball, mathteststatus, mathlang, znoyear, NULL FROM public.zno_info
+SELECT mathtest, uuid(outid), mathptname, mathball100, mathball12, mathball, mathteststatus, mathlang, NULL, znoyear FROM public.zno_info
 WHERE mathtest IS NOT NULL;
 
 INSERT INTO students_subjects(
