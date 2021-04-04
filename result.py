@@ -20,7 +20,7 @@ GROUP BY l.region, ss.year;
 '''
 cur.execute(query)
 
-with open('result2.csv', 'w', encoding='UTF-8') as f:
+with open('result.csv', 'w', encoding='UTF-8') as f:
     writer = csv.writer(f, lineterminator='\n')
     writer.writerow(['Регіон', 'Рік', 'Мінімальний бал з укр. мови та літератури'])
     for row in cur:
